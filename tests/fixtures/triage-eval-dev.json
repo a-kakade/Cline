@@ -1,0 +1,251 @@
+{
+  "set": "development",
+  "annotator": "engineer (single annotator, not independent)",
+  "note": "Used while writing the rules.",
+  "items": [
+    {
+      "text": "Someone is following me please help",
+      "label": "urgent_safety_concern"
+    },
+    {
+      "text": "a man is chasing me near the metro exit",
+      "label": "urgent_safety_concern"
+    },
+    {
+      "text": "He has a knife. I'm scared, please help me",
+      "label": "urgent_safety_concern"
+    },
+    {
+      "text": "they grabbed me and are dragging me into a car",
+      "label": "urgent_safety_concern"
+    },
+    {
+      "text": "help me!!!",
+      "label": "urgent_safety_concern"
+    },
+    {
+      "text": "I am in danger, need help right now",
+      "label": "urgent_safety_concern"
+    },
+    {
+      "text": "kidnapping happening near the bus stand call police",
+      "label": "urgent_safety_concern"
+    },
+    {
+      "text": "bachao mujhe bachao",
+      "label": "urgent_safety_concern"
+    },
+    {
+      "text": "koi mera peecha kar raha hai please madad karo",
+      "label": "urgent_safety_concern"
+    },
+    {
+      "text": "mujhe bachao koi",
+      "label": "urgent_safety_concern"
+    },
+    {
+      "text": "बचाओ कोई पीछा कर रहा है",
+      "label": "urgent_safety_concern"
+    },
+    {
+      "text": "वो मेरा पीछा कर रहे हैं मदद करो",
+      "label": "urgent_safety_concern"
+    },
+    {
+      "text": "two men are following us and one has a weapon",
+      "label": "urgent_safety_concern"
+    },
+    {
+      "text": "Helpppp",
+      "label": "urgent_safety_concern"
+    },
+    {
+      "text": "I feel unsafe walking alone here",
+      "label": "distress"
+    },
+    {
+      "text": "I am really scared right now it is very dark",
+      "label": "distress"
+    },
+    {
+      "text": "too scared to walk home tonight",
+      "label": "distress"
+    },
+    {
+      "text": "feeling threatened by a group near the park",
+      "label": "distress"
+    },
+    {
+      "text": "mujhe bahut dar lag raha hai akele",
+      "label": "distress"
+    },
+    {
+      "text": "dar lag raha hai yahan",
+      "label": "distress"
+    },
+    {
+      "text": "मुझे डर लग रहा है अकेले",
+      "label": "distress"
+    },
+    {
+      "text": "I'm nervous waiting for the cab alone at this hour",
+      "label": "distress"
+    },
+    {
+      "text": "A guy passed lewd comments at me near the station",
+      "label": "harassment_report"
+    },
+    {
+      "text": "Got catcalled by a group outside the college gate today",
+      "label": "harassment_report"
+    },
+    {
+      "text": "someone touched me inappropriately in the crowded bus",
+      "label": "harassment_report"
+    },
+    {
+      "text": "eve teasing is common on this road in the evenings",
+      "label": "harassment_report"
+    },
+    {
+      "text": "two bikers were staring and whistling at girls",
+      "label": "harassment_report"
+    },
+    {
+      "text": "yahan roz chhedkhani hoti hai",
+      "label": "harassment_report"
+    },
+    {
+      "text": "ek ladka mujhe ghoor raha tha bus mein",
+      "label": "harassment_report"
+    },
+    {
+      "text": "कल यहां छेड़छाड़ हुई थी",
+      "label": "harassment_report"
+    },
+    {
+      "text": "He kept harassing me on the metro platform",
+      "label": "harassment_report"
+    },
+    {
+      "text": "The street light is not working on this lane",
+      "label": "infrastructure_hazard"
+    },
+    {
+      "text": "big pothole outside gate 2, careful at night",
+      "label": "infrastructure_hazard"
+    },
+    {
+      "text": "open manhole near the market, someone could fall",
+      "label": "infrastructure_hazard"
+    },
+    {
+      "text": "no footpath on this stretch and it is flooded",
+      "label": "infrastructure_hazard"
+    },
+    {
+      "text": "light kharab hai yahan poora andhera hai",
+      "label": "infrastructure_hazard"
+    },
+    {
+      "text": "सड़क पर गड्ढा है और अंधेरा है",
+      "label": "infrastructure_hazard"
+    },
+    {
+      "text": "lane is pitch dark after 8pm no lights",
+      "label": "infrastructure_hazard"
+    },
+    {
+      "text": "fallen tree is blocking the path to the station",
+      "label": "infrastructure_hazard"
+    },
+    {
+      "text": "some drunk guys loitering near the shop, avoid this lane",
+      "label": "concern"
+    },
+    {
+      "text": "suspicious car parked here for an hour",
+      "label": "concern"
+    },
+    {
+      "text": "be careful around the underpass today",
+      "label": "concern"
+    },
+    {
+      "text": "sharabi log baithe hain savdhan rehna",
+      "label": "concern"
+    },
+    {
+      "text": "सावधान रहें यहां कुछ संदिग्ध लोग हैं",
+      "label": "concern"
+    },
+    {
+      "text": "Anyone know when the last metro leaves?",
+      "label": "general"
+    },
+    {
+      "text": "The chai at the corner stall is really good",
+      "label": "general"
+    },
+    {
+      "text": "can someone help me find the library?",
+      "label": "general"
+    },
+    {
+      "text": "please help me with directions to the bus stop",
+      "label": "general"
+    },
+    {
+      "text": "Thanks everyone for the tips yesterday",
+      "label": "general"
+    },
+    {
+      "text": "the bus was late again today",
+      "label": "general"
+    },
+    {
+      "text": "good morning neighbours",
+      "label": "general"
+    },
+    {
+      "text": "kya yahan se airport ke liye bus milegi?",
+      "label": "general"
+    },
+    {
+      "text": "आज बारिश बहुत हो रही है",
+      "label": "general"
+    },
+    {
+      "text": "I was scared watching that horror movie last night",
+      "label": "general"
+    },
+    {
+      "text": "he is not following me anymore, all good now",
+      "label": "general"
+    },
+    {
+      "text": "nobody is chasing anyone, just kids playing tag",
+      "label": "general"
+    },
+    {
+      "text": "The pharmacy near the gate is open late",
+      "label": "general"
+    },
+    {
+      "text": "👍",
+      "label": "unknown"
+    },
+    {
+      "text": "a",
+      "label": "unknown"
+    },
+    {
+      "text": "நன்றி எல்லோருக்கும்",
+      "label": "unknown"
+    },
+    {
+      "text": "???",
+      "label": "unknown"
+    }
+  ]
+}

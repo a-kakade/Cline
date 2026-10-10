@@ -1,0 +1,259 @@
+{
+  "set": "held-out",
+  "annotator": "engineer (single annotator, not independent)",
+  "note": "Written after the rules were frozen against the development set. Phrasing deliberately differs from the dev set.",
+  "items": [
+    {
+      "text": "there is a guy tailing me since the signal, im walking fast",
+      "label": "urgent_safety_concern"
+    },
+    {
+      "text": "he is pulling my hand and wont let go HELP",
+      "label": "urgent_safety_concern"
+    },
+    {
+      "text": "auto driver locked the doors and is not stopping please call someone",
+      "label": "urgent_safety_concern"
+    },
+    {
+      "text": "A car is following my cab. I am really frightened, send help",
+      "label": "urgent_safety_concern"
+    },
+    {
+      "text": "hes got a blade and is coming towards me",
+      "label": "urgent_safety_concern"
+    },
+    {
+      "text": "bhaiya koi mujhe zabardasti le ja raha hai bachaiye",
+      "label": "urgent_safety_concern"
+    },
+    {
+      "text": "mera peecha kar rahe hain do ladke, madad chahiye abhi",
+      "label": "urgent_safety_concern"
+    },
+    {
+      "text": "मुझे जबरदस्ती गाड़ी में बिठा रहे हैं बचाओ",
+      "label": "urgent_safety_concern"
+    },
+    {
+      "text": "SOS SOS",
+      "label": "urgent_safety_concern"
+    },
+    {
+      "text": "somebody help please, a man is attacking a girl near sector 9 market",
+      "label": "urgent_safety_concern"
+    },
+    {
+      "text": "im being followed by a stranger on a bike",
+      "label": "urgent_safety_concern"
+    },
+    {
+      "text": "he tried to grab my bag and now hes chasing me",
+      "label": "urgent_safety_concern"
+    },
+    {
+      "text": "honestly very uneasy standing at this empty bus stop",
+      "label": "distress"
+    },
+    {
+      "text": "the lane is deserted and I'm getting anxious, anyone nearby?",
+      "label": "distress"
+    },
+    {
+      "text": "I don't feel safe here at all",
+      "label": "distress"
+    },
+    {
+      "text": "kaafi darr lag raha hai raat ke is time pe akele",
+      "label": "distress"
+    },
+    {
+      "text": "mujhe yahan safe nahi lag raha, koi hai aas paas",
+      "label": "distress"
+    },
+    {
+      "text": "अकेले चलने में घबराहट हो रही है",
+      "label": "distress"
+    },
+    {
+      "text": "really worried about walking back to the hostel alone",
+      "label": "distress"
+    },
+    {
+      "text": "feeling very scared. strangers keep looking at me",
+      "label": "distress"
+    },
+    {
+      "text": "a group of boys kept making kissing sounds at us outside the mall",
+      "label": "harassment_report"
+    },
+    {
+      "text": "auto uncle was staring at me through the mirror the whole ride",
+      "label": "harassment_report"
+    },
+    {
+      "text": "some guy tried to take a photo of me without asking, followed by rude comments",
+      "label": "harassment_report"
+    },
+    {
+      "text": "he groped me in the queue at the temple",
+      "label": "harassment_report"
+    },
+    {
+      "text": "ladke seeti maar rahe the aur gande comment kar rahe the",
+      "label": "harassment_report"
+    },
+    {
+      "text": "bus me ek aadmi bar bar chhu raha tha",
+      "label": "harassment_report"
+    },
+    {
+      "text": "कॉलेज के बाहर लड़के रोज़ छेड़ते हैं",
+      "label": "harassment_report"
+    },
+    {
+      "text": "was harassed by a man at the ATM last week, reporting for awareness",
+      "label": "harassment_report"
+    },
+    {
+      "text": "ppl pass nasty remarks here every evening",
+      "label": "harassment_report"
+    },
+    {
+      "text": "streetlights on the whole stretch are off since sunday",
+      "label": "infrastructure_hazard"
+    },
+    {
+      "text": "huge pothole near the bus bay, scooters are slipping",
+      "label": "infrastructure_hazard"
+    },
+    {
+      "text": "the footbridge stairs are broken and nobody has fixed them",
+      "label": "infrastructure_hazard"
+    },
+    {
+      "text": "naali khuli hai sadak ke beech me",
+      "label": "infrastructure_hazard"
+    },
+    {
+      "text": "पूरी गली में बत्ती बंद है रात को अंधेरा रहता है",
+      "label": "infrastructure_hazard"
+    },
+    {
+      "text": "wires hanging low near the school, exposed wires after the rain",
+      "label": "infrastructure_hazard"
+    },
+    {
+      "text": "this underpass floods every time it rains",
+      "label": "infrastructure_hazard"
+    },
+    {
+      "text": "the lamp at the corner is dead again",
+      "label": "infrastructure_hazard"
+    },
+    {
+      "text": "a few men have been hanging around the ATM for hours, seems off",
+      "label": "concern"
+    },
+    {
+      "text": "be alert near the railway crossing after dark, lots of rowdy people",
+      "label": "concern"
+    },
+    {
+      "text": "avoid the back lane behind the market tonight",
+      "label": "concern"
+    },
+    {
+      "text": "kuch awara ladke ghoom rahe hain gali me dhyan rakhna",
+      "label": "concern"
+    },
+    {
+      "text": "यहां आज भीड़ में कुछ अजीब लोग हैं सावधान रहें",
+      "label": "concern"
+    },
+    {
+      "text": "suspicious guy asking people about their routine near the school",
+      "label": "concern"
+    },
+    {
+      "text": "what time does the market close today",
+      "label": "general"
+    },
+    {
+      "text": "lost my umbrella near the cafe, anyone seen it?",
+      "label": "general"
+    },
+    {
+      "text": "can anyone help me carry a heavy box to the second floor",
+      "label": "general"
+    },
+    {
+      "text": "help needed with my laptop wifi, any tech person around?",
+      "label": "general"
+    },
+    {
+      "text": "Is the 764 bus running on time?",
+      "label": "general"
+    },
+    {
+      "text": "great turnout at the community clean-up today!",
+      "label": "general"
+    },
+    {
+      "text": "kal ka plan kya hai bhai",
+      "label": "general"
+    },
+    {
+      "text": "मौसम आज बहुत अच्छा है",
+      "label": "general"
+    },
+    {
+      "text": "the movie scene where the villain chases the heroine was terrifying",
+      "label": "general"
+    },
+    {
+      "text": "i used to feel unsafe here but the new lights fixed everything",
+      "label": "general"
+    },
+    {
+      "text": "no one is following me, just checking in",
+      "label": "general"
+    },
+    {
+      "text": "do you have a recommendation for a safe cab service?",
+      "label": "general"
+    },
+    {
+      "text": "Police patrol van just passed, all calm",
+      "label": "general"
+    },
+    {
+      "text": "good luck for the exam tomorrow",
+      "label": "general"
+    },
+    {
+      "text": "hello",
+      "label": "general"
+    },
+    {
+      "text": "🙏🙏",
+      "label": "unknown"
+    },
+    {
+      "text": "ok",
+      "label": "general"
+    },
+    {
+      "text": "بہت شکریہ",
+      "label": "unknown"
+    },
+    {
+      "text": "ধন্যবাদ সবাইকে",
+      "label": "unknown"
+    },
+    {
+      "text": "..",
+      "label": "unknown"
+    }
+  ]
+}

@@ -42,6 +42,7 @@ vi.mock("@/server/auth", () => ({
 const alert: Alert = {
   id: "alert-1",
   user_id: "user-1",
+  kind: "sos",
   status: "created",
   reason: null,
   latitude: null,

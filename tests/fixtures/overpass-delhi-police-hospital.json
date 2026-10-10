@@ -1,0 +1,94 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-10-10T11:43:28Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+    {
+      "type": "node",
+      "id": 10869883005,
+      "tags": {
+        "amenity": "police",
+        "name": "No entry for foreigners going towards the government buildings",
+        "operator": "Delhi Police"
+      },
+      "lat": 28.6153345,
+      "lon": 77.2093428
+    },
+    {
+      "type": "node",
+      "id": 10869921208,
+      "tags": {
+        "amenity": "police",
+        "name": "Gate 35, No entry for foreigners",
+        "operator": "Delhi Police"
+      },
+      "lat": 28.6176525,
+      "lon": 77.1985707
+    },
+    {
+      "type": "node",
+      "id": 10869921306,
+      "tags": {
+        "amenity": "police",
+        "operator": "Delhi Police"
+      },
+      "lat": 28.617356,
+      "lon": 77.2020072
+    },
+    {
+      "type": "node",
+      "id": 10945664767,
+      "tags": {
+        "amenity": "hospital",
+        "name": "Guru Harkrishan Polyclinic Bangla Sahib",
+        "phone": "011 23340171"
+      },
+      "lat": 28.6267693,
+      "lon": 77.2092035
+    },
+    {
+      "type": "node",
+      "id": 13472563750,
+      "tags": {
+        "amenity": "police",
+        "name": "Delhi Police Headquarters"
+      },
+      "lat": 28.6253997,
+      "lon": 77.212071
+    },
+    {
+      "type": "node",
+      "id": 14076163807,
+      "tags": {
+        "addr:city": "ghaziabd",
+        "addr:housenumber": "B-202",
+        "addr:postcode": "201002",
+        "addr:street": "sanjay Namr",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "Jayprakash Infotech"
+      },
+      "lat": 28.6094967,
+      "lon": 77.2116967
+    },
+    {
+      "type": "way",
+      "id": 34404757,
+      "tags": {
+        "addr:full": "Baba Kharak Singh Marg, Near Bangla Sahib Gurudwara",
+        "addr:postcode": "110001",
+        "amenity": "hospital",
+        "contact:phone": "011-22344470;23404040;23365525;23404325",
+        "healthcare": "hospital",
+        "name": "Dr. Ram Manohar Lohia Hospital"
+      },
+      "center": {
+        "lat": 28.6260617,
+        "lon": 77.2007463
+      }
+    }
+  ]
+}
