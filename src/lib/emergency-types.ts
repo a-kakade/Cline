@@ -7,6 +7,7 @@ export type DeliveryStatus =
   | "unknown"
   | "simulated";
 export type AlertStatus = DeliveryStatus | "created" | "partial";
+export type AlertKind = "sos" | "journey_escalation" | "journey_all_clear";
 export type Location = {
   latitude: number;
   longitude: number;
@@ -24,6 +25,7 @@ export type Delivery = {
 export type Alert = {
   id: string;
   user_id: string;
+  kind: AlertKind;
   status: AlertStatus;
   reason: string | null;
   latitude: number | null;
