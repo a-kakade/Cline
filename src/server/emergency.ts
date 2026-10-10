@@ -1,10 +1,16 @@
 import type Database from "better-sqlite3";
 import { randomUUID } from "node:crypto";
 import { z } from "zod";
-import type { Alert, AlertStatus, Delivery } from "@/lib/emergency-types";
+import type {
+  Alert,
+  AlertKind,
+  AlertStatus,
+  Delivery,
+} from "@/lib/emergency-types";
 import { audit, throttle } from "./audit";
 import { AppError } from "./http";
 import { sendBounded, type NotificationProvider } from "./notifications";
+import type { Location } from "@/lib/emergency-types";
 
 export const locationSchema = z
   .object({
@@ -35,7 +41,7 @@ export class EmergencyService {
   get(userId: string, id: string): Alert {
     const row = this.db
       .prepare(
-        "SELECT id,user_id,status,reason,latitude,longitude,location_accuracy_meters,location_captured_at,message,created_at,updated_at FROM alerts WHERE id=? AND user_id=?",
+        "SELECT id,user_id,kind,status,reason,latitude,longitude,location_accuracy_meters,location_captured_at,message,created_at,updated_at FROM alerts WHERE id=? AND user_id=?",
       )
       .get(id, userId) as AlertRow | undefined;
     if (!row) throw new AppError(404, "NOT_FOUND", "Alert not found.");
@@ -80,6 +86,7 @@ export class EmergencyService {
     key: string,
     contactIds: string[],
     message: string,
+    kind: AlertKind = "sos",
   ): Alert {
     const existing = this.db
       .prepare("SELECT id FROM alerts WHERE user_id=? AND idempotency_key=?")
@@ -89,7 +96,7 @@ export class EmergencyService {
       now = this.clock();
     this.db
       .prepare(
-        "INSERT INTO alerts(id,user_id,idempotency_key,status,reason,message,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?)",
+        "INSERT INTO alerts(id,user_id,idempotency_key,status,reason,message,kind,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?)",
       )
       .run(
         id,
@@ -98,6 +105,7 @@ export class EmergencyService {
         contactIds.length ? "created" : "failed",
         contactIds.length ? null : "NO_CONTACTS",
         message,
+        kind,
         now,
         now,
       );
@@ -119,6 +127,72 @@ export class EmergencyService {
         .run(randomUUID(), id, contactId, now, now, now);
     }
     audit(this.db, userId, "sos.created", id, now);
+    return this.get(userId, id);
+  }
+  /**
+   * One immediate message to one of the user's sharing-enabled contacts, for
+   * user-initiated updates (such as sharing a journey). No retries: the caller
+   * records the outcome and the user can simply send again.
+   */
+  async notifyContact(
+    userId: string,
+    contactId: string,
+    message: string,
+    idempotencyKey: string,
+  ) {
+    const contact = this.db
+      .prepare(
+        "SELECT phone_number FROM contacts WHERE id=? AND user_id=? AND alert_enabled=1",
+      )
+      .get(contactId, userId) as { phone_number: string } | undefined;
+    if (!contact)
+      return {
+        status: "failed" as const,
+        code: "CONTACT_UNAVAILABLE",
+        retryable: false,
+      };
+    const sender = this.db
+      .prepare("SELECT name FROM user WHERE id=?")
+      .get(userId) as { name: string };
+    return sendBounded(this.provider, {
+      to: contact.phone_number,
+      message: `From ${sender.name.replace(/[\r\n]/g, " ").slice(0, 80)}: ${message}`,
+      idempotencyKey,
+    });
+  }
+  // System-initiated alerts (journey escalation / all-clear): recipients are
+  // already decided by the caller, so the alert is queued for the outbox
+  // immediately instead of waiting for a browser dispatch call. Idempotent per
+  // key. Must run inside the caller's transaction.
+  createQueuedEvent(
+    userId: string,
+    key: string,
+    contactIds: string[],
+    message: string,
+    kind: Exclude<AlertKind, "sos">,
+    location: Location | null = null,
+  ): Alert {
+    const alert = this.createEvent(userId, key, contactIds, message, kind);
+    if (alert.status !== "created") return alert;
+    this.db
+      .prepare(
+        "UPDATE alerts SET status='queued',latitude=?,longitude=?,location_accuracy_meters=?,location_captured_at=?,updated_at=? WHERE id=? AND user_id=? AND status='created'",
+      )
+      .run(
+        location?.latitude ?? null,
+        location?.longitude ?? null,
+        location?.accuracy ?? null,
+        location?.captured_at ?? null,
+        this.clock(),
+        alert.id,
+        userId,
+      );
+    return this.get(userId, alert.id);
+  }
+  // Best-effort immediate send of an already-queued alert. Anything left
+  // unsent is picked up by processPending().
+  async dispatchQueued(userId: string, id: string) {
+    await this.dispatchRows(userId, id);
     return this.get(userId, id);
   }
   async dispatch(userId: string, id: string, input: unknown) {
@@ -195,9 +269,11 @@ export class EmergencyService {
           .get(delivery.contact_id, userId) as
           { phone_number: string } | undefined;
         const locationText =
-          alert.latitude !== null
-            ? ` Last known location captured ${new Date(alert.location_captured_at!).toISOString()} (accuracy ${alert.location_accuracy_meters}m): https://maps.google.com/?q=${alert.latitude},${alert.longitude}`
-            : " Location unavailable.";
+          alert.kind === "journey_all_clear"
+            ? ""
+            : alert.latitude !== null
+              ? ` Last known location captured ${new Date(alert.location_captured_at!).toISOString()} (accuracy ${alert.location_accuracy_meters}m): https://maps.google.com/?q=${alert.latitude},${alert.longitude}`
+              : " Location unavailable.";
         const sender = this.db
           .prepare("SELECT name FROM user WHERE id=?")
           .get(userId) as { name: string };

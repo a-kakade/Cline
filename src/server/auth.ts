@@ -4,6 +4,17 @@ import type Database from "better-sqlite3";
 import { config } from "./config";
 import { getDatabase } from "./database";
 
+// Only the isolated E2E runner may raise auth limits (via AUTH_RATE_LIMIT_MAX);
+// production always keeps the strict defaults (30/min general, 3/10s sign-in/up).
+function authRateLimitOverride() {
+  const override = Number(process.env.AUTH_RATE_LIMIT_MAX);
+  return process.env.NODE_ENV !== "production" &&
+    Number.isInteger(override) &&
+    override >= 30
+    ? override
+    : null;
+}
+
 export function createAuth(database: Database.Database) {
   const env = config();
   return betterAuth({
@@ -22,10 +33,18 @@ export function createAuth(database: Database.Database) {
       enabled: true,
       storage: "database",
       window: 60,
-      max: 30,
+      max: authRateLimitOverride() ?? 30,
       // Read-only session hydration is frequent on shared NATs; keep credential
       // endpoints on the stricter provider/default limits.
-      customRules: { "/get-session": { window: 60, max: 300 } },
+      customRules: {
+        "/get-session": { window: 60, max: 300 },
+        ...(authRateLimitOverride()
+          ? {
+              "/sign-up/*": { window: 10, max: authRateLimitOverride()! },
+              "/sign-in/*": { window: 10, max: authRateLimitOverride()! },
+            }
+          : {}),
+      },
     },
     logger: { disabled: true },
     hooks: {
