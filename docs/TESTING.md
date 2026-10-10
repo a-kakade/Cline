@@ -1,5 +1,17 @@
 # Test evidence and local verification
 
+## Current commands (macOS/Linux, Node 22) — added 2026-10-10
+
+```bash
+npm ci && npm run setup && npm run db:migrate
+npm run format:check && npm run typecheck && npm run lint
+npm test                                   # Vitest: unit, component, real-auth/SQLite API tests
+npx playwright install chromium && npm run test:e2e   # real server, isolated temp DB, desktop + Pixel 7
+npm run build && npm audit --omit=dev
+```
+
+Last run (Stage 1, 2026-10-10, macOS arm64, Node 22.19.0): 257/257 unit, 22/22 e2e, build/lint/typecheck/format pass, production audit 0. Journey Guardian is covered by `tests/journeys.test.ts` (service, races, job, API), `tests/ui-journeys.test.tsx` and `tests/e2e/journeys.spec.ts`. The e2e server sets `AUTH_RATE_LIMIT_MAX` because the suite signs up users faster than production auth limits allow; that override is ignored in production (`tests/auth-limits.test.ts`). The sections below are the earlier Windows-era evidence, kept as history (KI-002).
+
 ## Scope and environment
 
 Evidence below was collected on **2026-10-10**, Windows x64, Node.js **22.16.0**,
@@ -114,7 +126,7 @@ typecheck, tests, and build. No SDK dependency was installed during these gates.
 The lead's later full `npm audit` found **five high-severity development-only
 findings** in the ESLint/Next lint-plugin glob dependency chain. Production-only
 `npm audit --omit=dev --audit-level=high` reported zero findings. Do not describe
-all dependencies as vulnerability-free. See `SECURITY.md` in this directory for
+all dependencies as vulnerability-free. See `SECURITY_AND_PRIVACY.md` in this directory for
 the advisory details and the decision not to force a breaking framework downgrade.
 
 ## Contacts stage — service/API evidence
