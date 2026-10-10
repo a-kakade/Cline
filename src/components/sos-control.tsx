@@ -60,6 +60,16 @@ export function SosControl({ emergencyNumber }: { emergencyNumber: string }) {
   useEffect(() => {
     if (error) errorRef.current?.focus();
   }, [error]);
+  // Arriving from the SOS button in the navigation bar: land on the send button.
+  useEffect(() => {
+    const focusSend = () => {
+      if (window.location.hash === "#sos")
+        document.querySelector<HTMLButtonElement>(".sos-send")?.focus();
+    };
+    focusSend();
+    window.addEventListener("hashchange", focusSend);
+    return () => window.removeEventListener("hashchange", focusSend);
+  }, []);
 
   async function send() {
     if (inFlight.current || savedId) return;
@@ -133,7 +143,7 @@ export function SosControl({ emergencyNumber }: { emergencyNumber: string }) {
   }
 
   return (
-    <section className="sos-control" aria-labelledby="sos-heading">
+    <section id="sos" className="sos-control" aria-labelledby="sos-heading">
       <div className="sos-control-action">
         <h2 id="sos-heading">Reach out with SOS.</h2>
         <p id="sos-consent">
@@ -245,7 +255,10 @@ export function SosControl({ emergencyNumber }: { emergencyNumber: string }) {
             {recent.slice(0, 5).map((alert, index) => (
               <li key={alert.id}>
                 <Link className="text-link" href={`/sos/${alert.id}`}>
-                  View recent alert {index + 1} <Icon name="arrow" />
+                  {alert.kind === "sos"
+                    ? "View recent alert"
+                    : "View journey notice"}{" "}
+                  {index + 1} <Icon name="arrow" />
                 </Link>
               </li>
             ))}

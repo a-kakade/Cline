@@ -29,7 +29,7 @@ export function SiteHeader({ emergencyNumber }: { emergencyNumber: string }) {
             />
           ) : (
             <Link
-              className="nav-link"
+              className={session ? "nav-link nav-link-account" : "nav-link"}
               href={session ? "/dashboard" : "/auth"}
               aria-current={
                 pathname === (session ? "/dashboard" : "/auth")
@@ -38,6 +38,16 @@ export function SiteHeader({ emergencyNumber }: { emergencyNumber: string }) {
               }
             >
               {session ? "My account" : "Sign in"}
+            </Link>
+          )}
+          {session && (
+            <Link
+              className="header-sos"
+              href="/dashboard#sos"
+              aria-label="SOS: open the emergency alert"
+            >
+              <Icon name="siren" width={20} height={20} />
+              SOS
             </Link>
           )}
           <a className="emergency-link" href={`tel:${emergencyNumber}`}>

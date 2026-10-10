@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { BottomNav } from "@/components/bottom-nav";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import "./globals.css";
@@ -8,6 +9,8 @@ export const metadata: Metadata = {
   description:
     "Your trusted contacts, an explicit SOS action, and clear alert outcomes. Sakhi is not an emergency response service.",
 };
+
+export const viewport: Viewport = { viewportFit: "cover" };
 
 export default function RootLayout({
   children,
@@ -29,6 +32,7 @@ export default function RootLayout({
           {children}
         </main>
         <SiteFooter />
+        <BottomNav />
       </body>
     </html>
   );

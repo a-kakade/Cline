@@ -4,19 +4,10 @@ import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { apiRequest, ApiError } from "@/lib/api-client";
 import type { Alert, AlertStatus } from "@/lib/emergency-types";
+import { ALERT_STATUS_LABELS } from "@/lib/alert-labels";
 import { Icon } from "@/components/icon";
 
-const labels: Record<AlertStatus, string> = {
-  created: "Alert saved — not sent yet",
-  queued: "Queued — not delivered",
-  sending: "Sending — delivery not confirmed",
-  accepted: "Accepted by provider — not confirmed delivered",
-  delivered: "Delivery confirmed by provider",
-  failed: "Failed — help is not confirmed",
-  unknown: "Unknown — delivery cannot be confirmed",
-  simulated: "Simulated — no message sent",
-  partial: "Mixed results — check each contact",
-};
+const labels = ALERT_STATUS_LABELS;
 const descriptions: Record<AlertStatus, string> = {
   created:
     "Your alert is saved. The original request may still be preparing to send. You can continue this saved alert without location if that request was interrupted.",
@@ -188,7 +179,13 @@ export function SosStatus({
             className={`sos-result sos-result-${alert.status}`}
             aria-labelledby="alert-result-heading"
           >
-            <p className="eyebrow">SAVED ALERT</p>
+            <p className="eyebrow">
+              {alert.kind === "journey_escalation"
+                ? "JOURNEY GUARDIAN — MISSED-ARRIVAL NOTICE"
+                : alert.kind === "journey_all_clear"
+                  ? "JOURNEY GUARDIAN — FOLLOW-UP NOTICE"
+                  : "SAVED ALERT"}
+            </p>
             <h2 id="alert-result-heading" role="status">
               {labels[alert.status]}
             </h2>
