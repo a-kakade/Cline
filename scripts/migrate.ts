@@ -1,0 +1,11 @@
+import { getMigrations } from "better-auth/db/migration";
+import { createAuth } from "../src/server/auth";
+import { openDatabase, migrate } from "../src/server/database";
+import { config } from "../src/server/config";
+const db = openDatabase(config().databasePath);
+const auth = createAuth(db);
+const migrations = await getMigrations(auth.options);
+await migrations.runMigrations();
+migrate(db);
+db.close();
+console.log("Database migrations complete.");
